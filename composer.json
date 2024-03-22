@@ -1,0 +1,18 @@
+{
+    "name": "btinet/tictactoe",
+    "description": "TicTacToe-Spiel",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Btinet\\Tictactoe\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Benjamin Wagner"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
