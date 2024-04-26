@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= $title ?? 'TicTacToe' ?></title>
     <!--  Kommentar  -->
-    <link rel="stylesheet" href="https://unpkg.com/boltcss/bolt.min.css">
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
 </head>
 <body>
     <?php include $content ?? '' ?>
