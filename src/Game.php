@@ -7,11 +7,13 @@ class Game
 {
 
     private string $baseTemplate = TEMPLATES . 'index.html.php';
+    private array $winSet;
 
     public function __construct()
     {
         $this->init();
         $this->makeTurn();
+        $this->initWinSet();
 
         if(array_key_exists('reset',$_GET)) {
             session_destroy();
@@ -41,8 +43,6 @@ class Game
             }
 
         }
-
-
     }
 
     /**
@@ -55,9 +55,7 @@ class Game
         $y = $_GET['y'] ?? null;
 
         if($x != null and $y != null) {
-
             $hit = false;
-
             if($_SESSION['played_fields']) {
                 foreach($_SESSION['played_fields'] as $field) {
                     if($x == $field['x'] and $y == $field['y']) {
@@ -66,7 +64,6 @@ class Game
                     }
                 }
             }
-
             if(!$hit) {
                 $_SESSION['played_fields'][] = [
                     'x' => $x,
@@ -74,8 +71,9 @@ class Game
                     'player' => $_SESSION['player'],
                 ];
             }
-
         }
+
+        // TODO: $_SESSION['played_fields'] mit $this->>winSet vergleichen.
 
         $this->nextPlayer();
     }
@@ -87,6 +85,23 @@ class Game
         } else {
             $_SESSION['player'] = 'Kreis';
         }
+    }
+
+    private function initWinSet()
+    {
+        $this->winSet = [
+            // Vertikal
+            [['x' => 1, 'y' => 1], ['x' => 1, 'y' => 2], ['x' => 1, 'y' => 3]],
+            [['x' => 2, 'y' => 1], ['x' => 2, 'y' => 2], ['x' => 2, 'y' => 3]],
+            [['x' => 3, 'y' => 1], ['x' => 3, 'y' => 2], ['x' => 3, 'y' => 3]],
+            // Horizontal
+            [['x' => 1, 'y' => 1], ['x' => 2, 'y' => 1], ['x' => 3, 'y' => 1]],
+            [['x' => 1, 'y' => 2], ['x' => 2, 'y' => 2], ['x' => 3, 'y' => 2]],
+            [['x' => 1, 'y' => 3], ['x' => 2, 'y' => 3], ['x' => 3, 'y' => 3]],
+            // Diagonal
+            [['x' => 1, 'y' => 1], ['x' => 2, 'y' => 2], ['x' => 3, 'y' => 3]],
+            [['x' => 1, 'y' => 3], ['x' => 2, 'y' => 2], ['x' => 3, 'y' => 1]],
+        ];
     }
 
 }
