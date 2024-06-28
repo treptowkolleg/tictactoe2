@@ -14,7 +14,7 @@ $player = $_SESSION['player'];
     <?php for($y = 1; $y <= 3; $y++): ?>
         <tr> <!-- Zeile /-->
             <?php for($x = 1; $x <= 3; $x++): ?>
-                <td><!-- Spalte /-->
+                <td style="text-align: center"><!-- Spalte /-->
                         <?php
 
                         $found = false;

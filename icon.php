@@ -29,7 +29,6 @@ switch ($icon) {
         break;
     default:
         imagerectangle($image,10,10,90,90,$pink);
-        break;
 }
 
 header('Content-type: image/png');
